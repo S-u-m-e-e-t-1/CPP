@@ -1,0 +1,48 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+bool isPalindromeString(string str){
+  int length = str.length();
+  for (int i = 0; i < length / 2; i++)
+    if (str[i] != str[length - 1 - i])
+      return false;
+  return true;
+}
+bool isPalindromeInteger(int num){
+  int rev = 0;
+  int temp = num;
+  while (temp > 0){
+    rev = rev * 10 + temp % 10;
+    temp = temp / 10;
+  }
+  return (num == rev);
+}
+int main(){
+  string str;
+  int num,choice;
+  cout << "Enter 1 for string and 2 for integer: ";
+  cin >> choice;
+  switch(choice){
+    case 1:  
+        goto StrPalChek;
+    case 2:
+        goto IntPalChek;
+  }
+  StrPalChek:
+          cout << "Enter a string: ";
+          cin >> str;
+          if (isPalindromeString(str))
+            cout << str << " is a palindrome string." << endl;
+          else
+            cout << str << " is not a palindrome string." << endl;
+          exit(1);
+  IntPalChek:
+          cout << "Enter a number: ";
+          cin >> num;
+          if (isPalindromeInteger(num))    
+            cout << num << " is a palindrome integer." <<endl;
+          else
+            cout << num << " is not a palindrome integer." << endl;
+          exit(1);
+}

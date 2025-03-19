@@ -1,0 +1,33 @@
+ // Zigzag conversion of a given string
+#include <iostream>
+#include <string>
+using namespace std;
+void printInZigZag(string str, int row){
+  int len = str.length();
+  string ch[row];
+  for(int i=0;i<len;i++){
+    ch[i] = ' ';
+  }
+  int i=0;
+  while(i<len){
+    for(int j=0;j<row&&i<len;j++){
+      ch[j]+=str[i++];
+    }
+    for(int j=row-2;j>=0&&i<len;j--){
+      ch[j]+=str[i++];
+    }
+  }
+    string res="" ;
+    for(string k:ch){
+      res+=k;
+    }
+  cout<<res;
+}
+int main(){
+  string S;
+  cin >> S;
+  int n;
+  cin>>n;
+  printInZigZag(S,n);
+  return 0;
+}

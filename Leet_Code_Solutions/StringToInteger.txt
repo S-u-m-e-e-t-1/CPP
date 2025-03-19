@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int Stoi(string s) {
+  int num = 0;
+  int i = 0;
+  int sign = 1;
+
+  while (i < s.length() && isspace(s[i])) {
+    i++;
+  }
+
+  if (i < s.length() && (s[i] == '+' || s[i] == '-')) {
+    if (s[i] == '-') {
+      sign = -1;
+    }
+    i++;
+  }
+
+  for (; i < s.length(); i++) {
+    if (!isdigit(s[i])) {
+      break;
+    }
+    int temp = (s[i] - '0');
+    num = num * 10 + temp;
+  }
+
+  return num * sign;
+}
+
+int main() {
+  string s = "123";
+  int x = Stoi(s);
+  cout << x;
+}

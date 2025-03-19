@@ -1,0 +1,55 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class LeetCode3 {
+public:
+  int k = 0, j = 0;
+  string myString;
+  string tempStr;
+  string myPalindromeSubStringArray[100];
+  bool isPalindrome(string str) {
+    int left = 0;
+    int right = str.length() - 1;
+    while (left < right) {
+      if (str[left] != str[right]) {
+        return false;
+      }
+      left++;
+      right--;
+    }
+    return true;
+  }
+  void findPalindromicSubString() {
+    int len = myString.length();
+    for (int i = 0; i < len; i++) {
+      string tempStr;
+      for (int j = i; j < len; j++) {
+        tempStr += myString[j];
+        if (isPalindrome(tempStr)) {
+        myPalindromeSubStringArray[k] =tempStr;
+        k++;
+        }
+      }
+    }
+  }
+  void findLongestString() {
+    int max = 0;
+    string longest="";
+    for (int i = 0; i < k; i++) {
+      if (myPalindromeSubStringArray[i].length() > max) {
+        max = myPalindromeSubStringArray[i].length();
+        longest = myPalindromeSubStringArray[i];
+      }
+    }
+    cout << longest;
+  }
+};
+
+int main() {
+  LeetCode3 obj;
+  cout << "Enter the String:";
+  cin >> obj.myString;
+  obj.findPalindromicSubString();
+  obj.findLongestString();
+  return 0;
+}

@@ -1,0 +1,56 @@
+//Regular Expression Matching
+#include <iostream>
+#include <string>
+using namespace std;
+class RegExMatch{
+private:
+string original;
+string pattern;
+public:
+ RegExMatch(string org,string ptr){
+   original = org;
+   pattern = ptr;
+ }
+bool startsWith(){
+  if(original.length() < pattern.length()){
+    return false;
+  }
+  for(int i=0;i<pattern.length();i++){
+    if(original[i] != pattern[i]){
+      return false;
+    }
+  }
+  return true;
+  }
+bool endsWith(){
+  if(original.length() < pattern.length()){
+    return false;
+  }
+  int k=original.length()-pattern.length();
+  for(int i=k;i<original.length();i++){
+    if(original[i] != pattern[i-k]){
+      return false;
+    }
+  }
+  return true;
+}
+bool containe(){
+  for(int i=0;i<original.length();i++)
+    for(int j=0;j<pattern.length();j++){
+      if(original[i+j] != pattern[j]){
+        break;
+      }
+      if(j == pattern.length()-1){
+        return true;
+      }
+    }
+  return false;
+}
+};
+int main(){
+  RegExMatch r1 = RegExMatch("Hello World","Hello");
+  cout<<r1.startsWith()<<endl;
+  cout<<r1.endsWith()<<endl;
+  cout<<r1.containe()<<endl;
+  return 0;
+}

@@ -1,0 +1,56 @@
+// Longest Substring Witout Reapation
+#include <iostream>
+#include <string>
+using namespace std;
+class LeetCode3 {
+public:
+  string myString;
+  string tempStr;
+  string mySubStringArray[200];
+  void findSubString() {
+    int k = 0;
+    int len = myString.length();
+    for (int i = 0; i < len; i++) {
+      string tempStr;
+      for (int j = i; j < len; j++) {
+        tempStr += myString[j];
+        if (isUniqueSubstring(tempStr)) {
+          mySubStringArray[k] = tempStr;
+          
+          k++;
+        } else {
+          break;
+        }
+      }
+    }
+  }
+  bool isUniqueSubstring(string substr) {
+    for (int i = 0; i < substr.length(); i++) {
+      for (int j = i + 1; j < substr.length(); j++) {
+        if (substr[i] == substr[j]) {
+          return false;
+        }
+      }
+    }
+    return true; 
+  }
+  void findLongestString() {
+    int max=0;
+    string longest;
+    for(int i=0;i<200;i++){
+      if(mySubStringArray[i].length()>max){
+        max=mySubStringArray[i].length();
+        longest=mySubStringArray[i];
+      }
+    }
+    cout<<longest;
+  }
+};
+int main() {
+  LeetCode3 obj;
+  cout << "Enter the String:";
+  cin >> obj.myString;
+  obj.findSubString();
+  obj.findLongestString() ;
+  return 0;
+}
